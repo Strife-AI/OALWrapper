@@ -24,6 +24,8 @@ extern cOAL_Device* gpDevice;
 
 // Effect Slots
 
+#ifdef WIN32
+
 LPALGENAUXILIARYEFFECTSLOTS alGenAuxiliaryEffectSlots = NULL;
 LPALDELETEAUXILIARYEFFECTSLOTS alDeleteAuxiliaryEffectSlots = NULL;
 LPALISAUXILIARYEFFECTSLOT alIsAuxiliaryEffectSlot = NULL;
@@ -63,6 +65,7 @@ LPALGETFILTERI alGetFilteri = NULL;
 LPALGETFILTERIV alGetFilteriv = NULL;
 LPALGETFILTERF alGetFilterf = NULL;
 LPALGETFILTERFV alGetFilterfv = NULL;
+#endif
 
 cOAL_EFXManager::cOAL_EFXManager() : mlNumSlots(0), mpvSlots(NULL), mplstEffectList(NULL), mplstFilterList(NULL)  
 {
@@ -86,6 +89,7 @@ bool cOAL_EFXManager::Initialize(int alNumSlotsHint, int alNumSends, bool abUseT
 
 
 
+#ifdef WIN32
 	// Slot funcs
 	alGenAuxiliaryEffectSlots		=	(LPALGENAUXILIARYEFFECTSLOTS) alGetProcAddress ("alGenAuxiliaryEffectSlots");
 	alDeleteAuxiliaryEffectSlots	=	(LPALDELETEAUXILIARYEFFECTSLOTS) alGetProcAddress ("alDeleteAuxiliaryEffectSlots");
@@ -140,6 +144,8 @@ bool cOAL_EFXManager::Initialize(int alNumSlotsHint, int alNumSends, bool abUseT
 		LogMsg("",eOAL_LogVerbose_Medium, eOAL_LogMsg_Error, "Failed initializing function pointers\n" );
 		return false;
 	}
+#endif
+	
 	LogMsg("",eOAL_LogVerbose_Medium, eOAL_LogMsg_Info, "Done\n" );
 
 	LogMsg("",eOAL_LogVerbose_Medium, eOAL_LogMsg_Info, "Calculating max slots...\n" );
