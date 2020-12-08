@@ -20,6 +20,7 @@
 #include "OALWrapper/OAL_OggStream.h"
 #include "OALWrapper/OAL_CustomStream.h"
 #include "OALWrapper/OAL_SourceManager.h"
+#include "alext.h"
 
 #include "OALWrapper/OAL_Filter.h"
 #include "OALWrapper/OAL_Effect_Reverb.h"
@@ -118,8 +119,7 @@ bool cOAL_Device::Init( cOAL_Init_Params& acParams )
 
 	ALCint lAttrList[] = 
 	{
-		ALC_HRTF_SOFT,
-		ALC_TRUE,
+		ALC_HRTF_SOFT, ALC_TRUE,
 		ALC_FREQUENCY,		acParams.mlOutputFreq,
 #ifdef __APPLE__
 #else
@@ -158,10 +158,10 @@ bool cOAL_Device::Init( cOAL_Init_Params& acParams )
 
 	LogMsg("",eOAL_LogVerbose_Low, eOAL_LogMsg_Info, "Retrieving Output Devices\n");
 	vector<string> llDevices = GetOutputDevices();
-//    vector<string>::iterator it;
-//	for (it = llDevices.begin(); it != llDevices.end(); ++it) {
-//		LogMsg("",eOAL_LogVerbose_Low, eOAL_LogMsg_Info, "\t%s\n", (*it).c_str());
-//	}
+	vector<string>::iterator it;
+	for (it = llDevices.begin(); it != llDevices.end(); ++it) {
+		LogMsg("",eOAL_LogVerbose_Low, eOAL_LogMsg_Info, "\t%s\n", (*it).c_str());
+	}
 
 	LogMsg("",eOAL_LogVerbose_Low, eOAL_LogMsg_Info, "Retrieving info\n" );
 
