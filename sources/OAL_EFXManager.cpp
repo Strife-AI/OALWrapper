@@ -24,8 +24,7 @@ extern cOAL_Device* gpDevice;
 
 // Effect Slots
 
-#ifdef WIN32
-
+#if defined(WIN32) || defined(__APPLE__)
 LPALGENAUXILIARYEFFECTSLOTS alGenAuxiliaryEffectSlots = NULL;
 LPALDELETEAUXILIARYEFFECTSLOTS alDeleteAuxiliaryEffectSlots = NULL;
 LPALISAUXILIARYEFFECTSLOT alIsAuxiliaryEffectSlot = NULL;
@@ -89,7 +88,7 @@ bool cOAL_EFXManager::Initialize(int alNumSlotsHint, int alNumSends, bool abUseT
 
 
 
-#ifdef WIN32
+#if defined(WIN32) || defined(__APPLE__)
 	// Slot funcs
 	alGenAuxiliaryEffectSlots		=	(LPALGENAUXILIARYEFFECTSLOTS) alGetProcAddress ("alGenAuxiliaryEffectSlots");
 	alDeleteAuxiliaryEffectSlots	=	(LPALDELETEAUXILIARYEFFECTSLOTS) alGetProcAddress ("alDeleteAuxiliaryEffectSlots");
