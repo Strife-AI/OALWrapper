@@ -20,7 +20,6 @@
 #include "OALWrapper/OAL_OggStream.h"
 #include "OALWrapper/OAL_CustomStream.h"
 #include "OALWrapper/OAL_SourceManager.h"
-#include "alext.h"
 
 #include "OALWrapper/OAL_Filter.h"
 #include "OALWrapper/OAL_Effect_Reverb.h"
